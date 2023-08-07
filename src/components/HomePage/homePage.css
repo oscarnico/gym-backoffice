@@ -1,0 +1,32 @@
+@keyframes slideInFromLeft {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .animation {
+    animation: 1s ease-out 0s 1 slideInFromLeft;;
+    margin: 50px;
+  }
+
+  .h1home {
+    font-family: monospace;
+    font-size: 50px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-shadow: 1px 3px 3px #0d6efd;
+    /* text-decoration: underline; */
+  }
+
+  .bigDivButton {
+    display: flex;
+    justify-content: center;
+  }
+
+  .divButton {
+    margin-top: 100px;
+  }
+  
