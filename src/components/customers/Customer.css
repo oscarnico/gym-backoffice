@@ -1,0 +1,31 @@
+
+.Customer td {
+  padding: 20px;
+  transition: background-color 0.2s ease-in-out;
+  }
+  
+.Customer:hover {
+  background-color: #d4e1f7;
+  }
+  
+.Customer-button {
+  margin-right: 5px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  }
+  
+.Customer-button.edit {
+  background-color: #0d6efd;
+  }
+  
+.Customer-button.delete {
+  background-color: #dc3545;
+  }
+  
+.Customer-button:hover {
+  opacity: 0.8;
+  }
+  

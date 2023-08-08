@@ -4,10 +4,10 @@ import Login from "../Login/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Button } from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="animation">
@@ -40,7 +40,7 @@ const HomePage = () => {
             style={{ width: "150px" }}
             variant="primary"
             size="lg"
-            onClick={() => Navigate(<Login />)}
+            onClick={() => navigate("/Login")}
           >
             Login
           </Button>
