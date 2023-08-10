@@ -9,15 +9,17 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleEmail = (email) => {
-    if (email !== "") {
-      setEmail(email);
-    }
+    setEmail(email);
+    // if (email !== "") {
+    //   setEmail(email);
+    // }
   };
 
   const handlePassword = (password) => {
-    if (password !== "") {
-      setPassword(password);
-    }
+    setPassword(password);
+    // if (password !== "") {
+    //   setPassword(password);
+    // }
   };
 
   const checkLogin = async (event) => {
@@ -32,7 +34,7 @@ const Login = () => {
 
       const token = res.data.token;
       localStorage.setItem("token", token);
-      navigate("/customers");
+      navigate("/Customers");
     } catch (error) {
       console.log('error al iniciar sesion')
     }
@@ -40,27 +42,51 @@ const Login = () => {
 
   return (
     <div className="generalDiv">
-      <div className="login-box">
-        <div className="form">
-          <form className="login-form">
-            <input
-              type="text"
-              placeholder="email"
-              value={email}
-              onChange={(e) => handleEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="password"
-              value={password}
-              onChange={(e) => handlePassword(e.target.value)}
-            />
-            <button onClick={checkLogin}>login</button>
-            {/* {fallo && <p>{fallo}</p>} */}
-          </form>
-        </div>
-      </div>
+  <h1 className="logo">OSCAR'S DEVELOPERS GYM</h1>
+  <div className="login-box">
+    <div className="form">
+      <form className="login-form">
+        <input
+          type="text"
+          placeholder="email"
+          value={email}
+          onChange={(e) => handleEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={(e) => handlePassword(e.target.value)}
+        />
+        <button onClick={checkLogin}>login</button>
+        {/* {fallo && <p>{fallo}</p>} */}
+      </form>
     </div>
+  </div>
+</div>
+
+    // <div className="generalDiv">
+    //   <div className="login-box">
+    //     <div className="form">
+    //       <form className="login-form">
+    //         <input
+    //           type="text"
+    //           placeholder="email"
+    //           value={email}
+    //           onChange={(e) => handleEmail(e.target.value)}
+    //         />
+    //         <input
+    //           type="password"
+    //           placeholder="password"
+    //           value={password}
+    //           onChange={(e) => handlePassword(e.target.value)}
+    //         />
+    //         <button onClick={checkLogin}>login</button>
+    //         {/* {fallo && <p>{fallo}</p>} */}
+    //       </form>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 

@@ -11,16 +11,23 @@ const HomePage = () => {
 
   return (
     <div className="animation">
+      <div className="container2">
       <div class="page-header pt-3">
         <h1 className="h1home">OSCAR'S DEVELOPERS GYM</h1>
       </div>
-      <p class="lead">Welcome to my individual master's project.</p>
+      <p>Welcome to my individual master's project.</p>
       <hr />
-      <div class="row">
-        <div class="col-12">
+      <ul>
+      <li>This app is a backoffice for managing the clients and services of a gym where you can add, modify, and delete, as well as assign services to clients.</li>
+      <li>The application consists of this homepage where you can access the login to go to the menu page. There you will already find users and services created to streamline your experience, although I encourage you to try to create something!</li>
+      <li>hhagjajgkjshgkhjkgjka ajhjgkhjkha jahlkjhgjkf jkahgajkhgkjahg kjhgh jaghjkakgh hajkhgkjahkjh jkhgkjahkh jkhgjf kjhakgj alh.</li>
+    </ul>
+      {/* <div>
+        <div>
           <p>
-            In this virtual gym, you can add users as well as modify or delete
-            them, just like with the services, making business management easy.
+          This app is a backoffice for managing the clients and
+          services of a gym where you can add, modify, and delete,
+          as well as assign services to clients.
           </p>
           <p>
             The application consists of this homepage where you can access the
@@ -33,18 +40,14 @@ const HomePage = () => {
             jaghjkakgh hajkhgkjahkjh jkhgkjahkh jkhgjf kjhakgj alh.
           </p>
         </div>
-      </div>
+      </div> */}
       <div className="bigDivButton">
         <div className="divButton">
-          <Button
-            style={{ width: "150px" }}
-            variant="primary"
-            size="lg"
-            onClick={() => navigate("/Login")}
-          >
+          <Button style={{ width: "150px" }} variant="primary" size="lg" onClick={() => navigate("/Login")}>
             Login
           </Button>
         </div>
+      </div>
       </div>
     </div>
   );

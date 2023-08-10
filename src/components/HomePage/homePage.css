@@ -8,17 +8,23 @@
   }
   
   .animation {
-    animation: 1s ease-out 0s 1 slideInFromLeft;;
-    margin: 50px;
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+    margin: 50px auto;
+    max-width: 50%;
   }
 
   .h1home {
+    color:   #3324be;
     font-family: monospace;
     font-size: 50px;
     font-weight: 600;
     letter-spacing: 2px;
-    text-shadow: 1px 3px 3px #0d6efd;
+    /* text-shadow: 1px 3px 3px #0d6efd; */
     /* text-decoration: underline; */
+  }
+
+  li {
+    padding: 10px;
   }
 
   .bigDivButton {
