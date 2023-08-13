@@ -1,6 +1,5 @@
-
 .Customer td {
-  padding: 20px;
+  padding: 9px 3px;
   transition: background-color 0.2s ease-in-out;
   }
   
@@ -9,11 +8,13 @@
   }
   
 .Customer-button {
+  width: 36px;
+  height: 36px;
   margin-right: 5px;
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 3px 5px;
   cursor: pointer;
   }
   

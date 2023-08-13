@@ -13,7 +13,7 @@ const HomePage = () => {
     <div className="animation">
       <div className="container2">
       <div class="page-header pt-3">
-        <h1 className="h1home">OSCAR'S DEVELOPERS GYM</h1>
+        <h1 className="h1home">OSCAR'S GYM</h1>
       </div>
       <p>Welcome to my individual master's project.</p>
       <hr />

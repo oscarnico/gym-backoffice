@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import * as React from "react";
+import { useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,10 +33,12 @@ const Login = () => {
         "http://localhost:4000/admin/login",
         userLogin
       );
-
+      const userName = res.data.email;
       const token = res.data.token;
       localStorage.setItem("token", token);
+      localStorage.setItem("adminEmail", userName);
       navigate("/Customers");
+      // navigate("/Customers", userName);
     } catch (error) {
       console.log('error al iniciar sesion')
     }
@@ -42,7 +46,7 @@ const Login = () => {
 
   return (
     <div className="generalDiv">
-  <h1 className="logo">OSCAR'S DEVELOPERS GYM</h1>
+  <h1 className="logo">OSCAR'S GYM</h1>
   <div className="login-box">
     <div className="form">
       <form className="login-form">
@@ -64,29 +68,6 @@ const Login = () => {
     </div>
   </div>
 </div>
-
-    // <div className="generalDiv">
-    //   <div className="login-box">
-    //     <div className="form">
-    //       <form className="login-form">
-    //         <input
-    //           type="text"
-    //           placeholder="email"
-    //           value={email}
-    //           onChange={(e) => handleEmail(e.target.value)}
-    //         />
-    //         <input
-    //           type="password"
-    //           placeholder="password"
-    //           value={password}
-    //           onChange={(e) => handlePassword(e.target.value)}
-    //         />
-    //         <button onClick={checkLogin}>login</button>
-    //         {/* {fallo && <p>{fallo}</p>} */}
-    //       </form>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 
