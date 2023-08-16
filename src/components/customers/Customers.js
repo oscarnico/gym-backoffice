@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./customers.css";
 import Customer from "./Customer";
+import PopCustomer from "../popup/PopCustomer";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,6 +12,18 @@ const Customers = () => {
   const [surName, setSurNaname] = useState("");
   const [dni, setDni] = useState("");
   const [email, setEmail] = useState("");
+  const [editCustomer, setEditCustomer] = useState(false);
+  const [addCustomer, setAddCustomer] = useState(false);
+
+  const openPopUp = () => {
+    setEditCustomer(true);
+    setAddCustomer(true);
+  };
+
+  const closePopUp = () => {
+    setEditCustomer(false);
+    setAddCustomer(false);
+  };
 
   const onGetCustomers = async () => {
     try {
@@ -22,14 +35,13 @@ const Customers = () => {
     }
   };
 
-  const onAddCustomer = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const onAddCustomer = async () => {
+    openPopUp();
     const newCustomer = {
-      name: data.get("name"),
-      surName: data.get("surName"),
-      dni: data.get("dni"),
-      email: data.get("email"),
+      name: name,
+      surName: surName,
+      dni: dni,
+      email: email,
     };
 
     try {
@@ -50,7 +62,9 @@ const Customers = () => {
     }
   };
 
+
   const onEditCustomer = async (_id) => {
+    openPopUp();
     try {
       const customerData = {
         name,
@@ -101,7 +115,7 @@ const Customers = () => {
 
   return (
     <div className="container">
-      <button className="addCustomer">
+      <button className="addCustomer" onClick={onAddCustomer}>
         {" "}
         <i className="fa-solid fa-user-plus"></i>{" "}
       </button>
@@ -126,6 +140,7 @@ const Customers = () => {
           ))}
         </tbody>
       </table>
+      {editCustomer && <PopCustomer onClose={closePopUp} />}
     </div>
   );
 };

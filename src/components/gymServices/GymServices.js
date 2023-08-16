@@ -4,11 +4,24 @@ import axios from "axios";
 import GymService from "./GymService";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PopService from "../popup/PopService";
 
 const GymServices = () => {
   const [gymServices, setGymServices] = useState([]);
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [addService, setaddService] = useState(false);
+  const [editService, setEditService] = useState(false);
+
+  const openPopUp = () => {
+    setEditService(true);
+    setaddService(true);
+  };
+
+  const closePopUp = () => {
+    setEditService(false);
+    setaddService(false);
+  };
 
   const onGetService = async () => {
     try {
@@ -19,12 +32,11 @@ const GymServices = () => {
     }
   };
 
-  const onAddService = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const onAddService = async () => {
+    openPopUp();
     const newService = {
-      description: data.get("description"),
-      price: data.get("price"),
+      description: description,
+      price: price,
     };
     try {
       await axios.post("http://localhost:4000/service", newService);
@@ -45,6 +57,7 @@ const GymServices = () => {
   };
 
   const onEditService = async (_id) => {
+    openPopUp();
     try {
       const serviceData = {
         description,
@@ -93,7 +106,7 @@ const GymServices = () => {
 
   return (
     <div className="container">
-      <button className="addGymService">
+      <button className="addGymService" onClick={onAddService}>
         <i className="fa-solid fa-plus"></i>
       </button>
       <table className="servicesTable">
@@ -115,6 +128,7 @@ const GymServices = () => {
           ))}
         </tbody>
       </table>
+      {editService && <PopService onClose={closePopUp} />}
     </div>
   );
 };
