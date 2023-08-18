@@ -40,34 +40,34 @@ const Login = () => {
       navigate("/Customers");
       // navigate("/Customers", userName);
     } catch (error) {
-      console.log('error al iniciar sesion')
+      console.log("error al iniciar sesion");
     }
   };
 
   return (
     <div className="generalDiv">
-  <h1 className="logo">OSCAR'S GYM</h1>
-  <div className="login-box">
-    <div className="form">
-      <form className="login-form">
-        <input
-          type="text"
-          placeholder="email"
-          value={email}
-          onChange={(e) => handleEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => handlePassword(e.target.value)}
-        />
-        <button onClick={checkLogin}>login</button>
-        {/* {fallo && <p>{fallo}</p>} */}
-      </form>
+      <h1 className="logo">OSCAR'S GYM</h1>
+      <div className="login-box">
+        <div className="form">
+          <form className="login-form">
+            <input
+              type="text"
+              placeholder="email"
+              value={email}
+              onChange={(e) => handleEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => handlePassword(e.target.value)}
+            />
+            <button onClick={checkLogin}>login</button>
+            {/* {fallo && <p>{fallo}</p>} */}
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   );
 };
 

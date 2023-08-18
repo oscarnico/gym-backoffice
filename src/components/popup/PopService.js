@@ -1,22 +1,32 @@
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
-function PopService({onClose}) {
+function PopService({ onClose, onCloseWithoutChange }) {
   const [show, setShow] = useState(true);
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
 
   const handleClose = () => {
     setShow(false);
-    if (onClose) onClose();
+    const data = {
+      description: description,
+      price: price,
+    };
+    onClose(data);
+  };
+
+  const handleCloseWithoutSave = () => {
+    setShow(false);
+    onCloseWithoutChange();
   };
 
   return (
     <>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>User Edit</Modal.Title>
+          <Modal.Title></Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -24,22 +34,26 @@ function PopService({onClose}) {
               <Form.Label>Description</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="name"
+                placeholder="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Price</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="surname"
+                type="number"
+                placeholder="price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
                 autoFocus
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleCloseWithoutSave}>
             Close
           </Button>
           <Button variant="primary" onClick={handleClose}>

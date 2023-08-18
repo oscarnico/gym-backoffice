@@ -2,23 +2,57 @@ import React, { useState, useEffect } from "react";
 import "./gymServices.css";
 import axios from "axios";
 import GymService from "./GymService";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import PopService from "../popup/PopService";
 
 const GymServices = () => {
   const [gymServices, setGymServices] = useState([]);
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [actualKey, setActualKey] = useState("");
   const [addService, setaddService] = useState(false);
   const [editService, setEditService] = useState(false);
 
-  const openPopUp = () => {
+  const openPopUpEdit = (key) => {
     setEditService(true);
+    setActualKey(key);
+  };
+
+  const openPopUpAdd = () => {
     setaddService(true);
   };
 
-  const closePopUp = () => {
+  const closePopUp = async (newService) => {
+    if (addService) {
+      try {
+        await axios.post("http://localhost:4000/service", newService);
+        setGymServices([...gymServices, newService]);
+      } catch (error) {
+        console.log("no se ha creado el cliente", error);
+      }
+    } else if (editService) {
+      try {
+        await axios.patch(
+          `http://localhost:4000/service/${actualKey}`,
+          newService,
+          {
+            headers: {
+              Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+            },
+          },
+          {}
+        );
+        const serviceIndex = gymServices.findIndex(
+          (service) => service._id === actualKey
+        );
+        const updatedServices = [...gymServices];
+        updatedServices[serviceIndex] = { _id: actualKey, ...newService };
+        setGymServices(updatedServices);
+      } catch (error) {
+        console.error("error al actualizar", error);
+      }
+    }
+    onCloseWithoutChange();
+  };
+
+  const onCloseWithoutChange = () => {
     setEditService(false);
     setaddService(false);
   };
@@ -32,20 +66,6 @@ const GymServices = () => {
     }
   };
 
-  const onAddService = async () => {
-    openPopUp();
-    const newService = {
-      description: description,
-      price: price,
-    };
-    try {
-      await axios.post("http://localhost:4000/service", newService);
-      setGymServices([...gymServices, newService]);
-    } catch (error) {
-      console.log("no se ha creado el cliente", error);
-    }
-  };
-
   const onDeleteService = async (id) => {
     try {
       await axios.delete(`http://localhost:4000/service/${id}`);
@@ -56,57 +76,13 @@ const GymServices = () => {
     }
   };
 
-  const onEditService = async (_id) => {
-    openPopUp();
-    try {
-      const serviceData = {
-        description,
-        price,
-      };
-
-      await axios.patch(
-        `http://localhost:3001/users/upDataService/${_id}`,
-        serviceData,
-        {
-          headers: {
-            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-          },
-        }
-      );
-
-      toast.success("servicio actualizado!", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: "colored",
-      });
-    } catch (error) {
-      console.log("error al actualizar", error);
-
-      toast.error(`error al actualizar`, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-  };
-
   useEffect(() => {
     onGetService();
   }, []);
 
   return (
     <div className="container">
-      <button className="addGymService" onClick={onAddService}>
+      <button className="addGymService" onClick={openPopUpAdd}>
         <i className="fa-solid fa-plus"></i>
       </button>
       <table className="servicesTable">
@@ -118,17 +94,22 @@ const GymServices = () => {
           </tr>
         </thead>
         <tbody>
-        {gymServices.map((service) => (
-        <GymService
+          {gymServices.map((service) => (
+            <GymService
               key={service._id}
               service={service}
-              onEditService={onEditService}
+              onEditService={() => openPopUpEdit(service._id)}
               onDeleteService={onDeleteService}
             />
           ))}
         </tbody>
       </table>
-      {editService && <PopService onClose={closePopUp} />}
+      {(addService || editService) && (
+        <PopService
+          onClose={closePopUp}
+          onCloseWithoutChange={onCloseWithoutChange}
+        />
+      )}
     </div>
   );
 };

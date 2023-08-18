@@ -3,24 +3,56 @@ import axios from "axios";
 import "./customers.css";
 import Customer from "./Customer";
 import PopCustomer from "../popup/PopCustomer";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
-  const [name, setName] = useState("");
-  const [surName, setSurNaname] = useState("");
-  const [dni, setDni] = useState("");
-  const [email, setEmail] = useState("");
+  const [actualKey, setActualKey] = useState("");
   const [editCustomer, setEditCustomer] = useState(false);
   const [addCustomer, setAddCustomer] = useState(false);
 
-  const openPopUp = () => {
+  const openPopUpEdit = (key) => {
     setEditCustomer(true);
+    setActualKey(key);
+  };
+
+  const openPopUpAdd = () => {
     setAddCustomer(true);
   };
 
-  const closePopUp = () => {
+  const onclosePopUp = async (newCustomer) => {
+    if (addCustomer) {
+      try {
+        await axios.post("http://localhost:4000/customer", newCustomer);
+        setCustomers([...customers, newCustomer]);
+      } catch (error) {
+        console.log("no se ha creado el cliente", error);
+      }
+    } else if (editCustomer) {
+      try {
+        await axios.patch(
+          `http://localhost:4000/customer/${actualKey}`,
+          newCustomer,
+          {
+            headers: {
+              Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+            },
+          },
+          {}
+        );
+        const customerIndex = customers.findIndex(
+          (customer) => customer._id === actualKey
+        );
+        const updatedCustomers = [...customers];
+        updatedCustomers[customerIndex] = { _id: actualKey, ...newCustomer };
+        setCustomers(updatedCustomers);
+      } catch (error) {
+        console.error("error al actualizar", error);
+      }
+    }
+    onCloseWithoutChange();
+  };
+
+  const onCloseWithoutChange = () => {
     setEditCustomer(false);
     setAddCustomer(false);
   };
@@ -35,23 +67,6 @@ const Customers = () => {
     }
   };
 
-  const onAddCustomer = async () => {
-    openPopUp();
-    const newCustomer = {
-      name: name,
-      surName: surName,
-      dni: dni,
-      email: email,
-    };
-
-    try {
-      await axios.post("http://localhost:4000/customer", newCustomer);
-      setCustomers([...customers, newCustomer]);
-    } catch (error) {
-      console.log("no se ha creado el cliente", error);
-    }
-  };
-
   const onDeleteCustomer = async (id) => {
     try {
       await axios.delete(`http://localhost:4000/customer/${id}`);
@@ -62,62 +77,14 @@ const Customers = () => {
     }
   };
 
-
-  const onEditCustomer = async (_id) => {
-    openPopUp();
-    try {
-      const customerData = {
-        name,
-        surName,
-        dni,
-        email,
-      };
-
-      await axios.patch(
-        `http://localhost:3001/users/upDateUser/${_id}`,
-        customerData,
-        {
-          headers: {
-            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-          },
-        }
-      );
-
-      toast.success("cliente actualizado!", {
-        position: "top-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: "colored",
-      });
-    } catch (error) {
-      console.error("error al actualizar", error);
-
-      toast.error(`error al actualizar`, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-  };
-
   useEffect(() => {
     onGetCustomers();
   }, []);
 
   return (
     <div className="container">
-      <button className="addCustomer" onClick={onAddCustomer}>
-        {" "}
-        <i className="fa-solid fa-user-plus"></i>{" "}
+      <button className="addCustomer" onClick={openPopUpAdd}>
+        <i className="fa-solid fa-user-plus"></i>
       </button>
       <table className="customerTable">
         <thead>
@@ -134,13 +101,18 @@ const Customers = () => {
             <Customer
               key={customer._id}
               customer={customer}
-              onEditCustomer={onEditCustomer}
+              onEditCustomer={() => openPopUpEdit(customer._id)}
               onDeleteCustomer={onDeleteCustomer}
             />
           ))}
         </tbody>
       </table>
-      {editCustomer && <PopCustomer onClose={closePopUp} />}
+      {(addCustomer || editCustomer) && (
+        <PopCustomer
+          onClose={onclosePopUp}
+          onCloseWithoutChange={onCloseWithoutChange}
+        />
+      )}
     </div>
   );
 };

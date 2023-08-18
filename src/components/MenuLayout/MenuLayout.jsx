@@ -11,7 +11,7 @@ const MenuLayout = ({ children }) => {
   //   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedEmail = localStorage.getItem('adminEmail');
+    const savedEmail = localStorage.getItem("adminEmail");
     if (savedEmail) {
       setAdminEmail(savedEmail);
     }
@@ -63,10 +63,22 @@ const MenuLayout = ({ children }) => {
                     Logout
                   </Link>
                 </div> */}
-                <Link className="link" to={"/Customers"}>  <i className="fa-solid fa-user" />  Customers</Link>
-                <Link className="link" to={"/GymServices"}> <i className="fa-solid fa-dumbbell"></i> GymServices</Link>
-                <Link className="link" to={"/Payments"}> <i className="fa-solid fa-money-check-dollar"></i> Payments</Link>
-                <Link className="link" to={"/"} onClick={logout}> <i className="fa-solid fa-right-from-bracket"></i> Logout</Link>
+                <Link className="link" to={"/Customers"}>
+                  {" "}
+                  <i className="fa-solid fa-user" /> Customers
+                </Link>
+                <Link className="link" to={"/GymServices"}>
+                  {" "}
+                  <i className="fa-solid fa-dumbbell"></i> GymServices
+                </Link>
+                <Link className="link" to={"/Payments"}>
+                  {" "}
+                  <i className="fa-solid fa-money-check-dollar"></i> Payments
+                </Link>
+                <Link className="link" to={"/"} onClick={logout}>
+                  {" "}
+                  <i className="fa-solid fa-right-from-bracket"></i> Logout
+                </Link>
               </div>
             </div>
           </div>
