@@ -18,6 +18,15 @@
     color:  #1c5cbc; 
     font-size: 50px;
 }
+.fa-user {
+    padding-right: 0.4rem;
+}
+.fa-money-check-dollar {
+    padding-right: 0.2rem;
+}
+.fa-right-from-bracket {
+    padding-right: 0.6rem;
+}
 
 .userEmail {
     color:  #1c5cbc;

@@ -12,8 +12,8 @@ const HomePage = () => {
   return (
     <div className="animation">
       <div className="container2">
-        <div class="page-header pt-3">
-          <h1 className="h1home">OSCAR'S GYM</h1>
+        <div className="page-header pt-3">
+          <h1 className="h1home">OSCAR'S GYM  <i className="fa-solid fa-dumbbell"></i> </h1>
         </div>
         <p>Welcome to my individual master's project.</p>
         <hr />
@@ -25,7 +25,7 @@ const HomePage = () => {
           </li>
           <li>
             The application consists of this homepage where you can access the
-            login to go to the menu page. There you will already find users and
+            login to go to the menu page. There you will already find customers and
             services created to streamline your experience, although I encourage
             you to try to create something!
           </li>

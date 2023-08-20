@@ -26,7 +26,7 @@ function PopService({ onClose, onCloseWithoutChange }) {
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title></Modal.Title>
+          <Modal.Title>* Required Fields</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -34,7 +34,7 @@ function PopService({ onClose, onCloseWithoutChange }) {
               <Form.Label>Description</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="description"
+                placeholder="*description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 autoFocus
@@ -44,7 +44,7 @@ function PopService({ onClose, onCloseWithoutChange }) {
               <Form.Label>Price</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="price"
+                placeholder="*price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 autoFocus

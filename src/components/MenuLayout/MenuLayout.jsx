@@ -64,33 +64,29 @@ const MenuLayout = ({ children }) => {
                   </Link>
                 </div> */}
                 <Link className="link" to={"/Customers"}>
-                  {" "}
                   <i className="fa-solid fa-user" /> Customers
                 </Link>
                 <Link className="link" to={"/GymServices"}>
-                  {" "}
                   <i className="fa-solid fa-dumbbell"></i> GymServices
                 </Link>
                 <Link className="link" to={"/Payments"}>
-                  {" "}
                   <i className="fa-solid fa-money-check-dollar"></i> Payments
                 </Link>
                 <Link className="link" to={"/"} onClick={logout}>
-                  {" "}
-                  <i className="fa-solid fa-right-from-bracket"></i> Logout
+                  <i className="fa-solid fa-right-from-bracket"></i>Logout
                 </Link>
               </div>
             </div>
           </div>
           <main className="col ps-md-2 pt-2">
-            <a
+            <Link
               href="#"
               data-bs-target="#sidebar"
               data-bs-toggle="collapse"
               className="border rounded-3 p-1 text-decoration-none"
             >
               <i className="fa-solid fa-bars"></i>{" "}
-            </a>
+            </Link>
             <div> {children} </div>
           </main>
         </div>

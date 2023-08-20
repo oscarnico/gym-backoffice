@@ -30,7 +30,7 @@ function PopCustomer({ onClose, onCloseWithoutChange }) {
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title></Modal.Title>
+          <Modal.Title>* Required Fields</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -38,7 +38,7 @@ function PopCustomer({ onClose, onCloseWithoutChange }) {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="name"
+                placeholder="*name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 autoFocus
@@ -48,7 +48,7 @@ function PopCustomer({ onClose, onCloseWithoutChange }) {
               <Form.Label>SurName</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="surname"
+                placeholder="*surname"
                 value={surname}
                 onChange={(e) => setSurname(e.target.value)}
                 autoFocus
@@ -58,7 +58,7 @@ function PopCustomer({ onClose, onCloseWithoutChange }) {
               <Form.Label>DNI</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="DNI"
+                placeholder="*DNI"
                 value={dni}
                 onChange={(e) => setDni(e.target.value)}
                 autoFocus
@@ -68,7 +68,7 @@ function PopCustomer({ onClose, onCloseWithoutChange }) {
               <Form.Label>Email Address</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="name@example.com"
+                placeholder="*name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 autoFocus

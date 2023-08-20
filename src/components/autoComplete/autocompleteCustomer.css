@@ -1,0 +1,46 @@
+.divAutoComplete {
+    font-family: 'Arial', sans-serif;
+    position: relative;
+
+}
+
+.searchInput {
+    border-radius: 5px;
+    border: 1px solid #dcdcdc;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: border-color 0.2s;
+    padding: 7px 10px;
+    outline: none;
+    width: 100%;
+}
+
+.searchInput:focus {
+    border-color: #007BFF;
+}
+
+.ul-filter {
+    margin-top: 5px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* max-height: 200px; */
+    overflow-y: auto;
+    list-style-type: none;
+    padding: 0;
+    position: absolute;
+    width: 50%;
+    max-height: 50vh;
+    background-color: #FFF;
+    /* z-index: 10; */
+}
+
+.list {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.list:hover {
+    background-color: #f0f0f0;
+}

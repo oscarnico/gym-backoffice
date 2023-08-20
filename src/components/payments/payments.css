@@ -1,0 +1,60 @@
+.divPayments {
+    font-family: 'Arial', sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.title1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.title2 {
+    color:  #0d6efd;
+    font-size: 20px;
+    margin: 15px 0;
+    /* color: #555; */
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 10px;
+}
+  
+.combo {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 1px solid #dcdcdc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) inset;
+    transition: border-color 0.2s;
+    outline: none;
+    appearance: none; /* Para quitar el estilo predeterminado en algunos navegadores */
+}
+
+.combo:focus {
+    border-color: #007BFF;
+}
+
+.btnAsing {
+    display: block;
+    width: 50%;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin: 20px auto; 
+    background-color: #0d6efd ;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btnAsing:hover {
+    opacity: 0.8;
+}
