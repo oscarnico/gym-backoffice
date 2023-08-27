@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-function PopCustomer({ onClose, onCloseWithoutChange }) {
+function PopCustomer({ onClose, onCloseWithoutChange, currentData }) {
   const [show, setShow] = useState(true);
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [dni, setDni] = useState("");
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    if (currentData) {
+        setName(currentData.name || "");
+        setSurname(currentData.surname || "");
+        setDni(currentData.dni || "");
+        setEmail(currentData.email || "");
+    }
+  }, [currentData]);
 
   const handleClose = () => {
     setShow(false);
@@ -24,6 +33,11 @@ function PopCustomer({ onClose, onCloseWithoutChange }) {
   const handleCloseWithoutSave = () => {
     setShow(false);
     onCloseWithoutChange();
+    setName("");
+    setSurname("");
+    setDni("");
+    setEmail("");
+   
   };
 
   return (

@@ -66,6 +66,7 @@ const GymServices = () => {
     }
   };
 
+
   const onDeleteService = async (id) => {
     try {
       await axios.delete(`http://localhost:4000/service/${id}`);

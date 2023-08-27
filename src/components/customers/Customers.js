@@ -9,14 +9,25 @@ const Customers = () => {
   const [actualKey, setActualKey] = useState("");
   const [editCustomer, setEditCustomer] = useState(false);
   const [addCustomer, setAddCustomer] = useState(false);
+  const [currentCustomer, setCurrentCustomer] = useState(null);
+  // const [name, setName] = useState("");
+  // const [surname, setSurname] = useState("");
+  // const [dni, setDni] = useState("");
+  // const [email, setEmail] = useState("");
 
   const openPopUpEdit = (key) => {
+    const customerToEdit = customers.find((customer) => customer._id === key);
+    setCurrentCustomer(customerToEdit);
     setEditCustomer(true);
     setActualKey(key);
   };
 
   const openPopUpAdd = () => {
     setAddCustomer(true);
+    // setName("");
+    // setSurname("");
+    // setDni("");
+    // setEmail("");
   };
 
   const onclosePopUp = async (newCustomer) => {
@@ -109,6 +120,7 @@ const Customers = () => {
       </table>
       {(addCustomer || editCustomer) && (
         <PopCustomer
+          currentData={currentCustomer}//mirarlo!!!
           onClose={onclosePopUp}
           onCloseWithoutChange={onCloseWithoutChange}
         />

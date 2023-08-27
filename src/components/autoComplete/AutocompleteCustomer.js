@@ -41,7 +41,8 @@ const AutocompleteCustomer = ({ onSelectCustomer }) => {
 
   return (
     <div className="divAutoComplete">
-      <input className="searchInput"
+      <input
+        className="searchInput"
         type="text"
         value={inputValue}
         onChange={handleChange}
@@ -50,7 +51,8 @@ const AutocompleteCustomer = ({ onSelectCustomer }) => {
       {showSuggestions && (
         <ul className="ul-filter">
           {filteredCustomers.map((customer) => (
-            <li className="list"
+            <li
+              className="list"
               key={customer._id}
               onClick={() => handleSelect(customer)}
             >

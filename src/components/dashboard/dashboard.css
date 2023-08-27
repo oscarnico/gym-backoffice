@@ -1,0 +1,68 @@
+.dashboard-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.client-list {
+    list-style: none;
+    padding: 0;
+}
+
+h2 {
+  background-color:  #0d6efd;
+  color: #fff;
+  padding: 0.3rem;
+  text-align: center;
+}
+
+.client-list li {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view-services-button {
+    background-color: #0d6efd;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.view-services-button:hover {
+    opacity: 0.8;
+}
+
+.client-details {
+    margin-top: 20px;
+}
+
+.service-list {
+    list-style: none;
+    padding: 0;
+}
+
+.service-list li {
+    padding: 5px 0;
+}
+
+.total-price {
+    margin-top: 20px;
+    font-weight: bold;
+}
+.total-price-all-services {  /* Añadido estilo para el total de todos los servicios */
+    margin-top: 20px;
+    font-weight: bold;
+    background-color: #f3f4f6; /* Fondo ligeramente gris */
+    padding: 10px;  /* Espaciado interno */
+    border-radius: 4px;  /* Bordes redondeados */
+}

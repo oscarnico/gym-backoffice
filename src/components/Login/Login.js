@@ -46,7 +46,7 @@ const Login = () => {
 
   return (
     <div className="generalDiv">
-      <h1 className="logo">OSCAR'S GYM</h1>
+      <h1 className="logo">OSCAR'S GYM <i className="fa-solid fa-dumbbell"></i></h1>
       <div className="login-box">
         <div className="form">
           <form className="login-form">

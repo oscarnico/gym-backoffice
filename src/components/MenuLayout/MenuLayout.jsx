@@ -19,6 +19,7 @@ const MenuLayout = ({ children }) => {
 
   const logout = async () => {
     window.localStorage.removeItem("token");
+    window.localStorage.removeItem("adminEmail");
     // navigate("/");
   };
   return (
@@ -71,6 +72,9 @@ const MenuLayout = ({ children }) => {
                 </Link>
                 <Link className="link" to={"/Payments"}>
                   <i className="fa-solid fa-money-check-dollar"></i> Payments
+                </Link>
+                <Link className="link" to={"/DashBoard"}>
+                <i className="fa-solid fa-chart-line"></i> DashBoard
                 </Link>
                 <Link className="link" to={"/"} onClick={logout}>
                   <i className="fa-solid fa-right-from-bracket"></i>Logout
