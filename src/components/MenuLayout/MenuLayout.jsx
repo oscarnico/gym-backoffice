@@ -73,8 +73,11 @@ const MenuLayout = ({ children }) => {
                 <Link className="link" to={"/Payments"}>
                   <i className="fa-solid fa-money-check-dollar"></i> Payments
                 </Link>
-                <Link className="link" to={"/DashBoard"}>
-                <i className="fa-solid fa-chart-line"></i> DashBoard
+                <Link className="link" to={"/CustomerswithServices"}>
+                <i class="fa-regular fa-address-book"></i> Customers with Services
+                </Link>
+                <Link className="link" to={"/Dasboard"}>
+                <i className="fa-solid fa-chart-line"></i> Dashboard
                 </Link>
                 <Link className="link" to={"/"} onClick={logout}>
                   <i className="fa-solid fa-right-from-bracket"></i>Logout

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./dashboard.css";
+import "./customerAndService.css";
+import { toast } from 'react-toastify';
 
-const Dashboard = () => {
+const CustomerAndService = () => {
   const [clientsWithServices, setClientsWithServices] = useState([]);
   const [selectedClient, setSelectedClient] = useState(null);
   const [totalServicesPrice, setTotalServicesPrice] = useState(0);
@@ -12,6 +13,8 @@ const Dashboard = () => {
       try {
         const response = await axios.get("http://localhost:4000/payment");
         setClientsWithServices(response.data);
+        console.log("esto es el payment.service")
+        console.log(response.data.serviceId)
 
         const total = response.data.reduce((sum, payment) => sum + payment.serviceId.price, 0);
         setTotalServicesPrice(total);
@@ -28,14 +31,36 @@ const Dashboard = () => {
     return services.reduce((sum, service) => sum + service.price, 0);
   };
 
+  const deleteService = async (serviceId) => {
+    console.log(`esto es la id : ${serviceId}`)
+    try {
+      const response = await axios.delete(`http://localhost:4000/payment/${serviceId}`);
+      if (response.status === 200) {
+        toast.success("Service removed successfully!");
+        // Actualizar la lista de servicios en el estado (o volver a buscar los datos)
+        setSelectedClient((prevClient) => {
+          return {
+            ...prevClient,
+            services: prevClient.services.filter(service => service._id !== serviceId)
+          };
+        });
+      } else {
+        toast.error("Error removing service!");
+      }
+    } catch (error) {
+      console.error("Error deleting service", error);
+    }
+  };
+  
+
   return (
     <div className="dashboard-container">
-      <h2>Clients with Services</h2>
+      <h2>Customers with Services</h2>
       <ul className="client-list">
         {clientsWithServices.map((client) => (
           <li key={client._id}>
             {client.name} {client.surname}
-            <button className="view-services-button" onClick={() => setSelectedClient(client)}>Resumen de Servicios</button>
+            <button className="view-services-button" onClick={() => setSelectedClient(client)}>Summary of Services</button>
           </li>
         ))}
       </ul>
@@ -48,6 +73,8 @@ const Dashboard = () => {
             {selectedClient.services.map((service) => (
               <li key={service._id}>
                 {service.description} - {service.price}€
+                <button className="deleDetail" onClick={() => deleteService(service._id)}>
+                  <i className="fa-solid fa-trash-can"></i> </button>
               </li>
             ))}
           </ul>
@@ -56,11 +83,11 @@ const Dashboard = () => {
           </div>
         </div>
       )}
-            <div className="total-price-all-services">
+            {/* <div className="total-price-all-services">
         Total Sum of Services: {totalServicesPrice}€
-      </div>
+      </div> */}
     </div>
   );
 };
 
-export default Dashboard;
+export default CustomerAndService;

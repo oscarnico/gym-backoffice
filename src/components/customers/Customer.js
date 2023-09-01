@@ -7,10 +7,11 @@ const Customer = ({ customer = {}, onEditCustomer, onDeleteCustomer }) => {
     !customer.name ||
     !customer.surname ||
     !customer.dni ||
-    !customer.email
+    !customer.email ||
+    !customer._id
   ) {
     return null;
-  };
+  }
 
   return (
     <tr className="Customer">

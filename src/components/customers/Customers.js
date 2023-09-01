@@ -10,10 +10,6 @@ const Customers = () => {
   const [editCustomer, setEditCustomer] = useState(false);
   const [addCustomer, setAddCustomer] = useState(false);
   const [currentCustomer, setCurrentCustomer] = useState(null);
-  // const [name, setName] = useState("");
-  // const [surname, setSurname] = useState("");
-  // const [dni, setDni] = useState("");
-  // const [email, setEmail] = useState("");
 
   const openPopUpEdit = (key) => {
     const customerToEdit = customers.find((customer) => customer._id === key);
@@ -24,17 +20,14 @@ const Customers = () => {
 
   const openPopUpAdd = () => {
     setAddCustomer(true);
-    // setName("");
-    // setSurname("");
-    // setDni("");
-    // setEmail("");
   };
 
   const onclosePopUp = async (newCustomer) => {
     if (addCustomer) {
       try {
         await axios.post("http://localhost:4000/customer", newCustomer);
-        setCustomers([...customers, newCustomer]);
+        // setCustomers([...customers, newCustomer]);
+        onGetCustomers();
       } catch (error) {
         console.log("no se ha creado el cliente", error);
       }
@@ -66,6 +59,7 @@ const Customers = () => {
   const onCloseWithoutChange = () => {
     setEditCustomer(false);
     setAddCustomer(false);
+    setCurrentCustomer(null);
   };
 
   const onGetCustomers = async () => {
@@ -101,7 +95,7 @@ const Customers = () => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>SurName</th>
+            <th>Surname</th>
             <th>DNI</th>
             <th>Email</th>
             <th>Actions</th>
@@ -120,7 +114,7 @@ const Customers = () => {
       </table>
       {(addCustomer || editCustomer) && (
         <PopCustomer
-          currentData={currentCustomer}//mirarlo!!!
+          currentData={currentCustomer}
           onClose={onclosePopUp}
           onCloseWithoutChange={onCloseWithoutChange}
         />

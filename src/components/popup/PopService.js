@@ -24,7 +24,7 @@ function PopService({ onClose, onCloseWithoutChange }) {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleCloseWithoutSave}>
         <Modal.Header closeButton>
           <Modal.Title>* Required Fields</Modal.Title>
         </Modal.Header>

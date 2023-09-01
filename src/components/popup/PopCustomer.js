@@ -12,10 +12,10 @@ function PopCustomer({ onClose, onCloseWithoutChange, currentData }) {
 
   useEffect(() => {
     if (currentData) {
-        setName(currentData.name || "");
-        setSurname(currentData.surname || "");
-        setDni(currentData.dni || "");
-        setEmail(currentData.email || "");
+      setName(currentData.name || "");
+      setSurname(currentData.surname || "");
+      setDni(currentData.dni || "");
+      setEmail(currentData.email || "");
     }
   }, [currentData]);
 
@@ -33,16 +33,11 @@ function PopCustomer({ onClose, onCloseWithoutChange, currentData }) {
   const handleCloseWithoutSave = () => {
     setShow(false);
     onCloseWithoutChange();
-    setName("");
-    setSurname("");
-    setDni("");
-    setEmail("");
-   
   };
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleCloseWithoutSave}>
         <Modal.Header closeButton>
           <Modal.Title>* Required Fields</Modal.Title>
         </Modal.Header>

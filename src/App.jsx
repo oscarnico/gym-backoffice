@@ -8,7 +8,7 @@ import GymServices from "./components/gymServices/GymServices";
 import Payments from "./components/payments/Payments";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import Dashboard from "./components/dashboard/Dashboard";
+import CustomerAndService from "./components/customerAndService/CustomerAndService";
 
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
                                   <Route
             path="/Payments" element={<MenuLayout> <Payments /> </MenuLayout>} />
                                               <Route
-            path="/DashBoard" element={<MenuLayout> <Dashboard /> </MenuLayout>} />
+            path="/CustomerswithServices" element={<MenuLayout> <CustomerAndService /> </MenuLayout>} />
         </Routes>
       </BrowserRouter>
     </>

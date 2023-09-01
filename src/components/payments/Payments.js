@@ -35,13 +35,13 @@ const Payments = () => {
         });
   
         if (response.status === 200) {
-          toast.success("Operación realizada"); 
+          toast.success("Operation completed, sending invoice!"); 
 
           setTimeout(() => {
             window.location.reload();
         }, 4500);
         } else {
-          toast.error("Hubo un error al realizar la operación");
+          toast.error("operation incompleted!!");
       }
       } catch (error) {
         toast.success("Operación realizada"); 
@@ -64,7 +64,7 @@ const Payments = () => {
             <option value="" disabled>Select a service</option>
             {services.map((service) => (
               <option key={service._id} value={service._id}>
-                {service.description} &rarr; {service.price}$
+                {service.description} &rarr; {service.price}€
               </option>
             ))}
           </select>
