@@ -11,7 +11,11 @@ const AutocompleteCustomer = ({ onSelectCustomer }) => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/customer");
+        const response = await axios.get("http://localhost:4000/customer", {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          },
+        });
         setCustomers(response.data);
       } catch (error) {
         console.error("Error fetching customers", error);

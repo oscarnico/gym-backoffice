@@ -25,7 +25,15 @@ const Customers = () => {
   const onclosePopUp = async (newCustomer) => {
     if (addCustomer) {
       try {
-        await axios.post("http://localhost:4000/customer", newCustomer);
+        await axios.post(
+          "http://localhost:4000/customer", newCustomer,
+          {
+            headers: {
+              Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+            },
+          },
+
+        );
         // setCustomers([...customers, newCustomer]);
         onGetCustomers();
       } catch (error) {
@@ -40,8 +48,7 @@ const Customers = () => {
             headers: {
               Authorization: `Bearer ${window.localStorage.getItem("token")}`,
             },
-          },
-          {}
+          }
         );
         const customerIndex = customers.findIndex(
           (customer) => customer._id === actualKey
@@ -63,8 +70,13 @@ const Customers = () => {
   };
 
   const onGetCustomers = async () => {
+    console.log("entra")
     try {
-      const resp = await axios.get("http://localhost:4000/customer");
+      const resp = await axios.get("http://localhost:4000/customer", {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+      });
       console.log("Data recibida:", resp.data);
       setCustomers(resp.data);
     } catch (error) {
@@ -74,7 +86,11 @@ const Customers = () => {
 
   const onDeleteCustomer = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/customer/${id}`);
+      await axios.delete(`http://localhost:4000/customer/${id}`, {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+      });
       console.log(`cliente eliminado con id: ${id}`);
       setCustomers(customers.filter((customer) => customer._id !== id));
     } catch (error) {

@@ -22,7 +22,14 @@ const GymServices = () => {
   const closePopUp = async (newService) => {
     if (addService) {
       try {
-        await axios.post("http://localhost:4000/service", newService);
+        await axios.post(
+          "http://localhost:4000/service", newService,
+          {
+            headers: {
+              Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+            },
+          },
+        );
         setGymServices([...gymServices, newService]);
       } catch (error) {
         console.log("no se ha creado el cliente", error);
@@ -30,14 +37,12 @@ const GymServices = () => {
     } else if (editService) {
       try {
         await axios.patch(
-          `http://localhost:4000/service/${actualKey}`,
-          newService,
+          `http://localhost:4000/service/${actualKey}`, newService,
           {
             headers: {
               Authorization: `Bearer ${window.localStorage.getItem("token")}`,
             },
           },
-          {}
         );
         const serviceIndex = gymServices.findIndex(
           (service) => service._id === actualKey
@@ -59,17 +64,24 @@ const GymServices = () => {
 
   const onGetService = async () => {
     try {
-      const resp = await axios.get("http://localhost:4000/service");
+      const resp = await axios.get("http://localhost:4000/service", {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+      });
       setGymServices(resp.data);
     } catch (error) {
       console.log("no trae los clientes", error);
     }
   };
 
-
   const onDeleteService = async (id) => {
     try {
-      await axios.delete(`http://localhost:4000/service/${id}`);
+      await axios.delete(`http://localhost:4000/service/${id}`, {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+      });
       console.log(`servicio eliminado con id: ${id}`);
       setGymServices(gymServices.filter((service) => service._id !== id));
     } catch (error) {
