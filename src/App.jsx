@@ -9,6 +9,7 @@ import Payments from "./components/payments/Payments";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import CustomerAndService from "./components/customerAndService/CustomerAndService";
+import Dashboard from "./components/dashboard/Dashboard";
 
 
 function App() {
@@ -27,6 +28,8 @@ function App() {
             path="/Payments" element={<MenuLayout> <Payments /> </MenuLayout>} />
                                               <Route
             path="/CustomerswithServices" element={<MenuLayout> <CustomerAndService /> </MenuLayout>} />
+                                                          <Route
+            path="/Dashboard" element={<MenuLayout> <Dashboard /> </MenuLayout>} />
         </Routes>
       </BrowserRouter>
     </>

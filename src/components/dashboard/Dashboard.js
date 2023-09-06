@@ -1,35 +1,54 @@
-import React from 'react';
-import SimpleChart from '../chart/SimpleChart';
+import React, { useState, useEffect } from "react";
+import { BarChart } from "@mui/x-charts/BarChart";
+import axios from "axios";
+import { orange } from "@mui/material/colors";
 
-function Dashboard() {
-  const data = {
-    labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-    datasets: [
-      {
-        label: 'Ventas en USD',
-        data: [100, 200, 300, 400, 500],
-        fill: false,
-        borderColor: '#007BFF',
-        tension: 0.1
-      }
-    ]
-  };
+const Dashboard = () => {
+  const [serviceCounts, setServiceCounts] = useState([]);
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      y: {
-        beginAtZero: true
-      }
+  const getServiceCounts = async () => {
+    try {
+      const resp = await axios.get(
+        "http://localhost:4000/payment/totalServices",
+        {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          },
+        }
+      );
+      console.log("Respuesta de conteos de servicios:", resp.data);
+      setServiceCounts(resp.data);
+    } catch (error) {
+      console.log("Error al obtener los conteos de servicios", error);
     }
   };
 
-  return (
-    <div>
-      <SimpleChart data={data} options={options} />
-    </div>
-  );
-}
+  useEffect(() => {
+    getServiceCounts();
+  }, []);
 
+  return (
+    <>
+      {serviceCounts.length && (
+        <BarChart
+          colors={["yellow"]}
+          xAxis={[
+            {
+              id: "barCategories",
+              data: serviceCounts.map((service) => service.description),
+              scaleType: "band",
+            },
+          ]}
+          series={[
+            {
+              data: serviceCounts.map((service) => service.total),
+            },
+          ]}
+          width={1100}
+          height={300}
+        />
+      )}
+    </>
+  );
+};
 export default Dashboard;

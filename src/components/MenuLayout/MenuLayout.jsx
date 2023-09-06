@@ -76,7 +76,7 @@ const MenuLayout = ({ children }) => {
                 <Link className="link" to={"/CustomerswithServices"}>
                 <i class="fa-regular fa-address-book"></i> Customers with Services
                 </Link>
-                <Link className="link" to={"/Dasboard"}>
+                <Link className="link" to={"/Dashboard"}>
                 <i className="fa-solid fa-chart-line"></i> Dashboard
                 </Link>
                 <Link className="link" to={"/"} onClick={logout}>

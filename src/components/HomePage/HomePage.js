@@ -1,6 +1,5 @@
 import React from "react";
 import "./homePage.css";
-import Login from "../Login/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Button } from "react-bootstrap";

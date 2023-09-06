@@ -70,7 +70,6 @@ const Customers = () => {
   };
 
   const onGetCustomers = async () => {
-    console.log("entra")
     try {
       const resp = await axios.get("http://localhost:4000/customer", {
         headers: {

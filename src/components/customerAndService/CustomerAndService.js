@@ -6,30 +6,23 @@ import { toast } from "react-toastify";
 const CustomerAndService = () => {
   const [clientsWithServices, setClientsWithServices] = useState([]);
   const [selectedClient, setSelectedClient] = useState(null);
-  const [totalServicesPrice, setTotalServicesPrice] = useState(0);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/payment", {
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+        },
+      });
+      setClientsWithServices(response.data);
+      console.log("esto es el payment.service");
+      console.log(response.data.serviceId);
+    } catch (error) {
+      console.error("Error al traer clientes con servicios", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:4000/payment", {
-          headers: {
-            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-          },
-        });
-        setClientsWithServices(response.data);
-        console.log("esto es el payment.service");
-        console.log(response.data.serviceId);
-
-        const total = response.data.reduce(
-          (sum, payment) => sum + payment.serviceId.price,
-          0
-        );
-        setTotalServicesPrice(total);
-      } catch (error) {
-        console.error("Error al traer clientes con servicios", error);
-      }
-    };
-
     fetchData();
   }, []);
 
@@ -37,11 +30,11 @@ const CustomerAndService = () => {
     return services.reduce((sum, service) => sum + service.price, 0);
   };
 
-  const deleteService = async (serviceId) => {
-    console.log(`esto es la id : ${serviceId}`);
+  const deleteService = async (paymentId) => {
+    console.log(`esto es la id : ${paymentId}`);
     try {
       const response = await axios.delete(
-        `http://localhost:4000/payment/${serviceId}`,
+        `http://localhost:4000/payment/dele/${paymentId}`,
         {
           headers: {
             Authorization: `Bearer ${window.localStorage.getItem("token")}`,
@@ -50,15 +43,7 @@ const CustomerAndService = () => {
       );
       if (response.status === 200) {
         toast.success("Service removed successfully!");
-        // Actualizar la lista de servicios en el estado (o volver a buscar los datos)
-        setSelectedClient((prevClient) => {
-          return {
-            ...prevClient,
-            services: prevClient.services.filter(
-              (service) => service._id !== serviceId
-            ),
-          };
-        });
+        fetchData();
       } else {
         toast.error("Error removing service!");
       }
@@ -66,7 +51,11 @@ const CustomerAndService = () => {
       console.error("Error deleting service", error);
     }
   };
+  console.log("clients rerender", clientsWithServices);
 
+  const selectedClientToRender = clientsWithServices.find(
+    ({ _id }) => _id === selectedClient
+  );
   return (
     <div className="dashboard-container">
       <h2>Customers with Services</h2>
@@ -76,26 +65,27 @@ const CustomerAndService = () => {
             {client.name} {client.surname}
             <button
               className="view-services-button"
-              onClick={() => setSelectedClient(client)}
+              onClick={() => setSelectedClient(client._id)}
             >
               Summary of Services
             </button>
           </li>
         ))}
       </ul>
-      {selectedClient && (
+      {selectedClientToRender && (
         <div className="client-details">
           <h3>
-            Services for {selectedClient.name} {selectedClient.surname}, with
-            DNI {selectedClient.dni}
+            Services for {selectedClientToRender.name}{" "}
+            {selectedClientToRender.surname}, with DNI{" "}
+            {selectedClientToRender.dni}
           </h3>
           <ul className="service-list">
-            {selectedClient.services.map((service) => (
+            {selectedClientToRender.services.map((service) => (
               <li key={service._id}>
                 {service.description} - {service.price}€
                 <button
                   className="deleDetail"
-                  onClick={() => deleteService(service._id)}
+                  onClick={() => deleteService(service.paymentId)}
                 >
                   <i className="fa-solid fa-trash-can"></i>{" "}
                 </button>
@@ -103,13 +93,11 @@ const CustomerAndService = () => {
             ))}
           </ul>
           <div className="total-price">
-            Total: {calculateTotalPriceCustomer(selectedClient.services)}€
+            Total:{" "}
+            {calculateTotalPriceCustomer(selectedClientToRender.services)}€
           </div>
         </div>
       )}
-      {/* <div className="total-price-all-services">
-        Total Sum of Services: {totalServicesPrice}€
-      </div> */}
     </div>
   );
 };
