@@ -82,10 +82,3 @@ h2 {
     margin-top: 20px;
     font-weight: bold;
 }
-.total-price-all-services {  /* Añadido estilo para el total de todos los servicios */
-    margin-top: 20px;
-    font-weight: bold;
-    background-color: #f3f4f6; /* Fondo ligeramente gris */
-    padding: 10px;  /* Espaciado interno */
-    border-radius: 4px;  /* Bordes redondeados */
-}

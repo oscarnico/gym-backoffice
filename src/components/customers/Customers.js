@@ -25,16 +25,11 @@ const Customers = () => {
   const onclosePopUp = async (newCustomer) => {
     if (addCustomer) {
       try {
-        await axios.post(
-          "http://localhost:4000/customer", newCustomer,
-          {
-            headers: {
-              Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-            },
+        await axios.post("http://localhost:4000/customer", newCustomer, {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
           },
-
-        );
-        // setCustomers([...customers, newCustomer]);
+        });
         onGetCustomers();
       } catch (error) {
         console.log("no se ha creado el cliente", error);
@@ -106,6 +101,7 @@ const Customers = () => {
       <button className="addCustomer" onClick={openPopUpAdd}>
         <i className="fa-solid fa-user-plus"></i>
       </button>
+      <h3>Customers</h3>
       <table className="customerTable">
         <thead>
           <tr>

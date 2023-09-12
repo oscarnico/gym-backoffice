@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import axios from "axios";
-import { orange } from "@mui/material/colors";
 
 const Dashboard = () => {
   const [serviceCounts, setServiceCounts] = useState([]);
@@ -31,7 +30,7 @@ const Dashboard = () => {
     <>
       {serviceCounts.length && (
         <BarChart
-          colors={["yellow"]}
+          colors={["Blue"]}
           xAxis={[
             {
               id: "barCategories",

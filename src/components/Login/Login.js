@@ -3,7 +3,6 @@ import { useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,16 +11,10 @@ const Login = () => {
 
   const handleEmail = (email) => {
     setEmail(email);
-    // if (email !== "") {
-    //   setEmail(email);
-    // }
   };
 
   const handlePassword = (password) => {
     setPassword(password);
-    // if (password !== "") {
-    //   setPassword(password);
-    // }
   };
 
   const checkLogin = async (event) => {
@@ -38,7 +31,6 @@ const Login = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("adminEmail", userName);
       navigate("/Customers");
-      // navigate("/Customers", userName);
     } catch (error) {
       console.log("error al iniciar sesion");
     }
@@ -46,7 +38,9 @@ const Login = () => {
 
   return (
     <div className="generalDiv">
-      <h1 className="logo">OSCAR'S GYM <i className="fa-solid fa-dumbbell"></i></h1>
+      <h1 className="logo">
+        OSCAR'S GYM <i className="fa-solid fa-dumbbell"></i>
+      </h1>
       <div className="login-box">
         <div className="form">
           <form className="login-form">
@@ -63,7 +57,6 @@ const Login = () => {
               onChange={(e) => handlePassword(e.target.value)}
             />
             <button onClick={checkLogin}>login</button>
-            {/* {fallo && <p>{fallo}</p>} */}
           </form>
         </div>
       </div>

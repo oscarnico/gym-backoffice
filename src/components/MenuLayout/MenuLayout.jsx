@@ -4,11 +4,9 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./MenuLayout.css";
 import { Link } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.css";
-// import { useNavigate } from "react-router-dom";
 
 const MenuLayout = ({ children }) => {
   const [adminEmail, setAdminEmail] = useState("");
-  //   const navigate = useNavigate();
 
   useEffect(() => {
     const savedEmail = localStorage.getItem("adminEmail");
@@ -20,7 +18,6 @@ const MenuLayout = ({ children }) => {
   const logout = async () => {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("adminEmail");
-    // navigate("/");
   };
   return (
     <>
@@ -40,44 +37,21 @@ const MenuLayout = ({ children }) => {
                 </div>
                 <p className="userEmail">Admin: {adminEmail}</p>
                 <hr className="my-1" />
-                {/* <div className="link-wrapper">
-                  <i className="fa-solid fa-user" />
-                  <Link className="link" to={"/Customers"}>
-                    Customers
-                  </Link>
-                </div>
-                <div className="link-wrapper">
-                  <i className="fa-solid fa-dumbbell" />
-                  <Link className="link" to={"/GymServices"}>
-                    GymServices
-                  </Link>
-                </div>
-                <div className="link-wrapper">
-                <i className="fa-solid fa-money-check-dollar"></i>
-                  <Link className="link" to={"/Payments"}>
-                    Payments
-                  </Link>
-                </div>
-                <div className="link-wrapper">
-                <i className="fa-solid fa-right-from-bracket"></i>
-                  <Link className="link" to={"/"} onClick={logout}>
-                    Logout
-                  </Link>
-                </div> */}
                 <Link className="link" to={"/Customers"}>
                   <i className="fa-solid fa-user" /> Customers
                 </Link>
                 <Link className="link" to={"/GymServices"}>
-                  <i className="fa-solid fa-dumbbell"></i> GymServices
+                  <i className="fa-solid fa-dumbbell"></i> Gym Services
                 </Link>
                 <Link className="link" to={"/Payments"}>
                   <i className="fa-solid fa-money-check-dollar"></i> Payments
                 </Link>
                 <Link className="link" to={"/CustomerswithServices"}>
-                <i class="fa-regular fa-address-book"></i> Customers with Services
+                  <i class="fa-regular fa-address-book"></i> Customers with
+                  Services
                 </Link>
                 <Link className="link" to={"/Dashboard"}>
-                <i className="fa-solid fa-chart-line"></i> Dashboard
+                  <i className="fa-solid fa-chart-line"></i> Dashboard
                 </Link>
                 <Link className="link" to={"/"} onClick={logout}>
                   <i className="fa-solid fa-right-from-bracket"></i>Logout

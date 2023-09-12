@@ -43,7 +43,7 @@ const Payments = () => {
             headers: {
               Authorization: `Bearer ${window.localStorage.getItem("token")}`,
             },
-          },
+          }
         );
 
         if (response.status === 200) {
@@ -64,7 +64,7 @@ const Payments = () => {
 
   return (
     <div className="divPayments">
-      <h1 className="title1">Assign Service to Customer</h1>
+      <h2 className="title1">Assign Service to Customer</h2>
       <AutocompleteCustomer onSelectCustomer={setSelectedCustomer} />
       {selectedCustomer && (
         <>

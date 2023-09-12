@@ -22,14 +22,11 @@ const GymServices = () => {
   const closePopUp = async (newService) => {
     if (addService) {
       try {
-        await axios.post(
-          "http://localhost:4000/service", newService,
-          {
-            headers: {
-              Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-            },
+        await axios.post("http://localhost:4000/service", newService, {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
           },
-        );
+        });
         setGymServices([...gymServices, newService]);
       } catch (error) {
         console.log("no se ha creado el cliente", error);
@@ -37,12 +34,13 @@ const GymServices = () => {
     } else if (editService) {
       try {
         await axios.patch(
-          `http://localhost:4000/service/${actualKey}`, newService,
+          `http://localhost:4000/service/${actualKey}`,
+          newService,
           {
             headers: {
               Authorization: `Bearer ${window.localStorage.getItem("token")}`,
             },
-          },
+          }
         );
         const serviceIndex = gymServices.findIndex(
           (service) => service._id === actualKey
@@ -98,6 +96,7 @@ const GymServices = () => {
       <button className="addGymService" onClick={openPopUpAdd}>
         <i className="fa-solid fa-plus"></i>
       </button>
+      <h3>Gym Services</h3>
       <table className="servicesTable">
         <thead>
           <tr>

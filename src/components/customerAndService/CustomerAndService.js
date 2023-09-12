@@ -74,11 +74,11 @@ const CustomerAndService = () => {
       </ul>
       {selectedClientToRender && (
         <div className="client-details">
-          <h3>
+          <h2>
             Services for {selectedClientToRender.name}{" "}
             {selectedClientToRender.surname}, with DNI{" "}
             {selectedClientToRender.dni}
-          </h3>
+          </h2>
           <ul className="service-list">
             {selectedClientToRender.services.map((service) => (
               <li key={service._id}>

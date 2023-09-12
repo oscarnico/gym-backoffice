@@ -12,46 +12,30 @@ const HomePage = () => {
     <div className="animation">
       <div className="container2">
         <div className="page-header pt-3">
-          <h1 className="h1home">OSCAR'S GYM  <i className="fa-solid fa-dumbbell"></i> </h1>
+          <h1 className="h1home">
+            OSCAR'S GYM <i className="fa-solid fa-dumbbell"></i>{" "}
+          </h1>
         </div>
         <p>Welcome to my individual master's project.</p>
         <hr />
         <ul>
           <li>
             This app is a backoffice for managing the clients and services of a
-            gym where you can add, modify, and delete, as well as assign
-            services to clients.
+            gym where you can add, edit, and delete, as well as assign services
+            to clients.
           </li>
           <li>
             The application consists of this homepage where you can access the
-            login to go to the menu page. There you will already find customers and
-            services created to streamline your experience, although I encourage
-            you to try to create something!
+            login to go to the menu page. There you will already find customers
+            and services created to streamline your experience, although I
+            encourage you to try to create something!
           </li>
           <li>
-            hhagjajgkjshgkhjkgjka ajhjgkhjkha jahlkjhgjkf jkahgajkhgkjahg kjhgh
-            jaghjkakgh hajkhgkjahkjh jkhgkjahkh jkhgjf kjhakgj alh.
+            This web application is specifically designed to provide users with
+            a seamless experience. We trust you'll find great value in managing
+            the gym's clients and services.
           </li>
         </ul>
-        {/* <div>
-        <div>
-          <p>
-          This app is a backoffice for managing the clients and
-          services of a gym where you can add, modify, and delete,
-          as well as assign services to clients.
-          </p>
-          <p>
-            The application consists of this homepage where you can access the
-            login to go to the menu page. There you will already find users and
-            services created to streamline your experience, although I encourage
-            you to try to create something!
-          </p>
-          <p>
-            hhagjajgkjshgkhjkgjka ajhjgkhjkha jahlkjhgjkf jkahgajkhgkjahg kjhgh
-            jaghjkakgh hajkhgkjahkjh jkhgkjahkh jkhgjf kjhakgj alh.
-          </p>
-        </div>
-      </div> */}
         <div className="bigDivButton">
           <div className="divButton">
             <Button
