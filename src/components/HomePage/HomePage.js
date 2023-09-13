@@ -20,9 +20,9 @@ const HomePage = () => {
         <hr />
         <ul>
           <li>
-            This app is a backoffice for managing the clients and services of a
-            gym where you can add, edit, and delete, as well as assign services
-            to clients.
+            This web application is a backoffice for managing the customers and
+            services of a gym where you can add, edit, and delete, as well as
+            assign services to customers.
           </li>
           <li>
             The application consists of this homepage where you can access the
@@ -33,7 +33,7 @@ const HomePage = () => {
           <li>
             This web application is specifically designed to provide users with
             a seamless experience. We trust you'll find great value in managing
-            the gym's clients and services.
+            the gym's customers and services.
           </li>
         </ul>
         <div className="bigDivButton">

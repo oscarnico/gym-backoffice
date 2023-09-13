@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-function PopService({ onClose, onCloseWithoutChange }) {
+function PopService({ onClose, onCloseWithoutChange, currentData }) {
   const [show, setShow] = useState(true);
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+
+  useEffect(() => {
+    if (currentData) {
+      setDescription(currentData.description || "");
+      setPrice(currentData.price || "");
+    }
+  }, [currentData]);
 
   const handleClose = () => {
     setShow(false);

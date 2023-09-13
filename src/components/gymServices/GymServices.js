@@ -9,8 +9,11 @@ const GymServices = () => {
   const [actualKey, setActualKey] = useState("");
   const [addService, setaddService] = useState(false);
   const [editService, setEditService] = useState(false);
+  const [currentServive, setCurrentService] = useState(null);
 
   const openPopUpEdit = (key) => {
+    const serviceToEdit = gymServices.find((service) => service._id === key);
+    setCurrentService(serviceToEdit);
     setEditService(true);
     setActualKey(key);
   };
@@ -58,6 +61,7 @@ const GymServices = () => {
   const onCloseWithoutChange = () => {
     setEditService(false);
     setaddService(false);
+    setCurrentService(null);
   };
 
   const onGetService = async () => {
@@ -118,6 +122,7 @@ const GymServices = () => {
       </table>
       {(addService || editService) && (
         <PopService
+          currentData={currentServive}
           onClose={closePopUp}
           onCloseWithoutChange={onCloseWithoutChange}
         />
